@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      #loading {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: sans-serif;
+        z-index: 999;
+      }
+
+      #loading h1 {
+        font-size: 2em;
+        margin-bottom: 0.5em;
+      }
+
+      #loading p {
+        font-size: 1.2em;
+        opacity: 0.8;
+      }
+    </style>
+    <script src="aframe.min.js"></script>
+    <script src="mindar-image-aframe.prod.js"></script>    
+  </head>
+  <body>
+    <!-- LOADING SCREEN -->
+    <div id="loading">
+      <h1>AR Nusantara</h1>
+      <p>Loading AR experience...</p>
+    </div>
+
+    
+    <a-scene
+      mindar-image="imageTargetSrc: gas.mind;"
+      color-space="sRGB"
+      renderer="colorManagement: true, physicallyCorrectLights"
+      vr-mode-ui="enabled: false"
+      device-orientation-permission-ui="enabled: true"
+    >
+      <a-assets>
+        <video id="video2" src="gongxifacai1.mp4" loop muted playsinline crossorigin="anonymous"></video>
+        <video id="video3" src="indoday.mp4" loop muted playsinline crossorigin="anonymous"></video>
+        <video id="video4" src="drusfes2.mp4" loop muted playsinline crossorigin="anonymous"></video>
+        <video id="video5" src="gongxifacai2.mp4" loop muted playsinline crossorigin="anonymous"></video>
+        <video id="video6" src="zolotosen.mp4" loop muted playsinline crossorigin="anonymous"></video>
+        <video id="video7" src="79indo.mp4" loop muted playsinline crossorigin="anonymous"></video>
+        <video id="video1" src="drusfes1.mp4" loop muted playsinline crossorigin="anonymous"></video>
+      </a-assets>
+
+      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+      <!-- Target 1: indoday.png -->
+        <a-entity mindar-image-target="targetIndex: 0" id="marker1">  
+      <a-video
+        id="videoPlane1"
+        src="#video1"
+        width="1.5"
+        height="0.84375"
+        position="1.5 0 0"  
+      ></a-video>
+    </a-entity>
+
+      <!-- Target 2: gongxifacai1.png -->
+     <a-entity mindar-image-target="targetIndex: 1" id="marker2">
+  <a-video
+    id="videoPlane2"
+    src="#video2"
+    width="1.5"
+    height="0.84375"
+    position="1.5 0 0" 
+  ></a-video>
+</a-entity>
+      <!-- Target 3: gongxifacai1.png -->
+     <a-entity mindar-image-target="targetIndex: 2" id="marker3">
+  <a-video
+    id="videoPlane3"
+    src="#video3"
+    width="1.5"
+    height="0.84375"
+    position="1.5 0 0" 
+  ></a-video>
+</a-entity>
+      <!-- Target 4: gongxifacai1.png -->
+     <a-entity mindar-image-target="targetIndex: 3" id="marker4">
+  <a-video
+    id="videoPlane4"
+    src="#video4"
+    width="1.5"
+    height="0.84375"
+    position="1.5 0 0" 
+  ></a-video>
+</a-entity>
+      <!-- Target 5: gongxifacai1.png -->
+     <a-entity mindar-image-target="targetIndex: 4" id="marker5">
+  <a-video
+    id="videoPlane5"
+    src="#video5"
+    width="1.5"
+    height="0.84375"
+    position="1.5 0 0" 
+  ></a-video>
+</a-entity>
+      <!-- Target 6: gongxifacai1.png -->
+     <a-entity mindar-image-target="targetIndex: 5" id="marker6">
+  <a-video
+    id="videoPlane6"
+    src="#video6"
+    width="1.5"
+    height="0.84375"
+    position="1.5 0 0" 
+  ></a-video>
+</a-entity>
+      <!-- Target 7: gongxifacai1.png -->
+     <a-entity mindar-image-target="targetIndex: 6" id="marker7">
+  <a-video
+    id="videoPlane7"
+    src="#video7"
+    width="1.5"
+    height="0.84375"
+    position="1.5 0 0" 
+  ></a-video>
+</a-entity>
+
+    <!-- Script -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const loading = document.getElementById("loading");
+        const scene = document.querySelector("a-scene");
+
+        const video1 = document.querySelector("#video1");
+        const video2 = document.querySelector("#video2");
+        const video3 = document.querySelector("#video3");
+        const video4 = document.querySelector("#video4");
+        const video5 = document.querySelector("#video5");
+        const video6 = document.querySelector("#video6");
+        const video7 = document.querySelector("#video7");
+
+        const marker1 = document.querySelector("#marker1");
+        const marker2 = document.querySelector("#marker2");
+        const marker3 = document.querySelector("#marker3");
+        const marker4 = document.querySelector("#marker4");
+        const marker5 = document.querySelector("#marker5");
+        const marker6 = document.querySelector("#marker6");
+        const marker7 = document.querySelector("#marker7");
+
+        scene.addEventListener("loaded", () => {
+          loading.style.display = "none";
+        });
+
+        marker1.addEventListener("targetFound", () => { video1.play(); });
+        marker1.addEventListener("targetLost", () => { video1.pause(); });
+
+        marker2.addEventListener("targetFound", () => { video2.play(); });
+        marker2.addEventListener("targetLost", () => { video2.pause(); });
+
+        marker3.addEventListener("targetFound", () => { video3.play(); });
+        marker3.addEventListener("targetLost", () => { video3.pause(); });
+
+        marker4.addEventListener("targetFound", () => { video4.play(); });
+        marker4.addEventListener("targetLost", () => { video4.pause(); });
+
+        marker5.addEventListener("targetFound", () => { video5.play(); });
+        marker5.addEventListener("targetLost", () => { video5.pause(); });
+
+        marker6.addEventListener("targetFound", () => { video6.play(); });
+        marker6.addEventListener("targetLost", () => { video6.pause(); });
+
+        marker7.addEventListener("targetFound", () => { video7.play(); });
+        marker7.addEventListener("targetLost", () => { video7.pause(); });
+
+      });
+    </script>
+  </body>
+</html>
